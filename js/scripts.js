@@ -94,25 +94,25 @@ $(document).ready(function () {
                 // $('section.navigation').addClass('fixed');
                 $('header').css({
                     "border-bottom": "none",
-                    "padding": "35px 0"
+                    "padding": "10px 0px"
                 });
                 $('header .member-actions').css({
-                    "top": "26px",
+                    "top": "10px",
                 });
                 $('header .navicon').css({
-                    "top": "34px",
+                    "top": "35px",
                 });
             } else {
                 // $('section.navigation').removeClass('fixed');
                 $('header').css({
                     "border-bottom": "solid 1px rgba(255, 255, 255, 0.2)",
-                    "padding": "50px 0"
+                    "padding": "10px 0px"
                 });
                 $('header .member-actions').css({
-                    "top": "41px",
+                    "top": "10px",
                 });
                 $('header .navicon').css({
-                    "top": "48px",
+                    "top": "35px",
                 });
             }
         });
@@ -185,20 +185,20 @@ $(document).ready(function () {
         },
         data: {
             // Event title
-            title: "Paul and Rochelle's Wedding",
+            title: "Jem and Abby's Wedding",
 
             // Event start date
-            start: new Date('Jun 25, 2021 16:00'),
+            start: new Date('Feb 22, 2022 14:00'),
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Jun 25, 2021 21:00'),
+            end: new Date('Feb 22, 2022 21:00'),
 
             // Event Address
-            address: 'Aquila Crystal Palace, Tagaytay City',
+            address: 'Iglesia ni Cristo- Locale ng Pasay',
 
             // Event Description
-            description: "We can't wait to see you on our big day. For any queries or issues contact us: Paul (09088648597) | Rochelle (09190076370)"
+            description: "We can't wait to see you on our big day. For any queries or issues contact us"
         }
     });
 
@@ -234,7 +234,7 @@ $(document).ready(function () {
             } else if  (MD5($('#invite_code').val()) === '5d50d22735a7469266aab23fd8aeb536' && $('#extras').val() > 6) {
                 $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 6 companions is allowed.'));
             } else {
-                $.post('https://script.google.com/macros/s/AKfycbz_ZMTT3z_ddvT1GipnH7HGA2HWb27eMmDb6Fz-I5sxe7dkKdpRF0Tp0NAy1lJ41Mzb/exec', data)
+                $.post('https://script.google.com/macros/s/AKfycbyKDuFzCbY4ECO7Hc6J_U_dLXhhdSO4w5WzrfsSw-_aZ4ke4TGiMcBshyUU1EQXBOdR-A/exec', data)
                     .done(function (data) {
                         console.log(data);
                         if (data.result === "error") {

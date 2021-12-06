@@ -100,8 +100,8 @@ h5 {
 .btn-margin-right {
     margin-right: 20px
 }
-
-/*section.intro,
+/*
+section.intro,
 section.features-extra,
 section.rsvp {
   
@@ -127,8 +127,10 @@ section.blog {
     margin: 0
 }
 
+
+
 a {
-    color: #28395B
+    color: #28395B;
     -webkit-transition-timing-function: ease;
     transition-timing-function: ease;
     -webkit-transition-duration: 200ms;
@@ -458,7 +460,7 @@ header {
     text-align: left;
     width: 100%;
     margin: 0 auto;
-    // background-color: rgba(93, 161, 157, 0.6);
+    /*background-color: rgba(93, 161, 157, 0.6);*/
     transition: padding 300ms ease-in-out
 }
 

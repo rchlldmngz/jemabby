@@ -209,39 +209,63 @@ $(document).ready(function () {
     $('#rsvp-form').on('submit', function (e) {
         e.preventDefault();
         var data = $(this).serialize();
-
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-       if (MD5($('#invite_code').val()) !== 'e3251075554389fe91d17a794861d47b'
-            && MD5($('#invite_code').val()) !== '38181d991caac98be8fb2ecb8bd0f166'
-            && MD5($('#invite_code').val()) !== '13d63838ef1fb6f34ca2dc6821c60e49'
-            && MD5($('#invite_code').val()) !== 'e2c4a40d50b47094f571e40efead3900'
-            && MD5($('#invite_code').val()) !== 'ecb287ff763c169694f682af52c1f309'
-            && MD5($('#invite_code').val()) !== '5d50d22735a7469266aab23fd8aeb536'
+        // if not attending, remaining inputs are optional
+        if (!$('#not_attend').is(":checked")) {
+            if ($('#guestname').val()                       == "" 
+                || $('#phone').val()                        == "" 
+                || $('#extras').val()                       == "" 
+                || $('#invite_code').val()                  == ""
             ) {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-        } else {
-            if (MD5($('#invite_code').val()) === 'e3251075554389fe91d17a794861d47b' && $('#extras').val() > 1) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only 1 companion is allowed.'));
-            } else if  (MD5($('#invite_code').val()) === '38181d991caac98be8fb2ecb8bd0f166' && $('#extras').val() > 2) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 2 companions is allowed.'));
-            } else if  (MD5($('#invite_code').val()) === '13d63838ef1fb6f34ca2dc6821c60e49' && $('#extras').val() > 3) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 3 companions is allowed.'));
-            } else if  (MD5($('#invite_code').val()) === 'e2c4a40d50b47094f571e40efead3900' && $('#extras').val() > 4) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 4 companions is allowed.'));
-            } else if  (MD5($('#invite_code').val()) === 'ecb287ff763c169694f682af52c1f309' && $('#extras').val() > 5) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 5 companions is allowed.'));
-            } else if  (MD5($('#invite_code').val()) === '5d50d22735a7469266aab23fd8aeb536' && $('#extras').val() > 6) {
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 6 companions is allowed.'));
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>All fields are required!</strong>'));
+                exit();
             } else {
-                $.post('https://script.google.com/macros/s/AKfycbyKDuFzCbY4ECO7Hc6J_U_dLXhhdSO4w5WzrfsSw-_aZ4ke4TGiMcBshyUU1EQXBOdR-A/exec', data)
+                if (MD5($('#invite_code').val()) !== 'e3251075554389fe91d17a794861d47b'
+                && MD5($('#invite_code').val()) !== '38181d991caac98be8fb2ecb8bd0f166'
+                && MD5($('#invite_code').val()) !== '13d63838ef1fb6f34ca2dc6821c60e49'
+                && MD5($('#invite_code').val()) !== 'e2c4a40d50b47094f571e40efead3900'
+                && MD5($('#invite_code').val()) !== 'ecb287ff763c169694f682af52c1f309'
+                && MD5($('#invite_code').val()) !== '5d50d22735a7469266aab23fd8aeb536'
+                ) {
+                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+                    exit();
+                } else {
+                    if (MD5($('#invite_code').val()) === 'e3251075554389fe91d17a794861d47b' && $('#extras').val() > 1) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only 1 companion is allowed.'));
+                        exit();
+                    } else if  (MD5($('#invite_code').val()) === '38181d991caac98be8fb2ecb8bd0f166' && $('#extras').val() > 2) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 2 companions is allowed.'));
+                        exit();
+                    } else if  (MD5($('#invite_code').val()) === '13d63838ef1fb6f34ca2dc6821c60e49' && $('#extras').val() > 3) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 3 companions is allowed.'));
+                        exit();
+                    } else if  (MD5($('#invite_code').val()) === 'e2c4a40d50b47094f571e40efead3900' && $('#extras').val() > 4) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 4 companions is allowed.'));
+                        exit();
+                    } else if  (MD5($('#invite_code').val()) === 'ecb287ff763c169694f682af52c1f309' && $('#extras').val() > 5) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 5 companions is allowed.'));
+                        exit();
+                    } else if  (MD5($('#invite_code').val()) === '5d50d22735a7469266aab23fd8aeb536' && $('#extras').val() > 6) {
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Only up to 6 companions is allowed.'));
+                        exit();
+                    }
+                }
+            }
+        }
+        
+        $.post('https://script.google.com/macros/s/AKfycbyKDuFzCbY4ECO7Hc6J_U_dLXhhdSO4w5WzrfsSw-_aZ4ke4TGiMcBshyUU1EQXBOdR-A/exec', data)
                     .done(function (data) {
                         console.log(data);
                         if (data.result === "error") {
                             $('#alert-wrapper').html(alert_markup('danger', data.message));
                         } else {
                             $('#alert-wrapper').html('');
-                            $('#rsvp-modal').modal('show');
+                            if ($('#not_attend').is(":checked")) {
+                                $('#rsvp-modal2').modal('show');
+                            } else {
+                                $('#rsvp-modal').modal('show');
+                            }
                             document.getElementById('rsvp-form').reset();
                         }
                     })
@@ -249,8 +273,6 @@ $(document).ready(function () {
                         console.log(data);
                         $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
                     });
-            }
-        }
     });
 
     function getUrlVars() {

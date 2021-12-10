@@ -300,6 +300,21 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div id="rsvp-modal2" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <div class="section-padding">
+                        <h3>Thank you!</h3>
+                        <p>Your response has been recorded.</p>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="container">
         <div class="text-center">
             <h3></h3>
@@ -312,7 +327,19 @@
                 <form id="rsvp-form" class="rsvp-form"
                       action=""
                       method="POST">
-                    <div class="row">
+                      <div class="row" id="radio">
+                        <div class="col-md-12 col-sm-12">
+                            <strong>RSVP Attendance</strong><br>
+                            <div class="form-check">
+                                <input class="fa form-check-input" type="radio" id="radio-a" name="Attendance" value="Attending">
+                                <label class="form-check-label" for="radio-a">I will attend.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="fa form-check-input" type="radio" id="not_attend" name="Attendance" value="Not Attending">
+                                <label class="form-check-label" for="radio-b">Sorry, I cannot attend.</label>
+                            </div>
+                            <br>
+                        </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
                                 <i class="fa fa-user"></i><input name="name" id="guestname"
@@ -323,8 +350,7 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
                                 <i class="fa fa-phone"></i><input type="number" id="phone" name="phone"
-                                                                    placeholder="Mobile number" 
-                                                                    required>
+                                                                    placeholder="Mobile number">
                             </div>
                         </div>
                     </div>
@@ -333,16 +359,14 @@
                             <div class="form-input-group">
                                 <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
                                                                   id="extras"
-                                                                  placeholder="No. of companions"
-                                                                  required>
+                                                                  placeholder="No. of companions">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
                                 <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
                                                                 class="" min="0"
-                                                                placeholder="Invite code"
-                                                                required>
+                                                                placeholder="Invite code">
                             </div>
                         </div>
                     </div>
